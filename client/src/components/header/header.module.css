@@ -16,7 +16,7 @@ header{
     font-size: 1.5rem;
 }
 
-header nav{
+.nav{
     display:flex;
     gap: 24px;
 }

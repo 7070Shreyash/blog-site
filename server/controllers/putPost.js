@@ -5,8 +5,8 @@ import { createError } from "../utils/error";
 
 const putPost = async (req,res,next) => {
     try {
-        let newPath = null;
-        if (req.file) {
+      let newPath = null;
+      if (req.file) {
       const {originalname,path} = req.file;
       const parts = originalname.split('.');
       const ext = parts[parts.length - 1];

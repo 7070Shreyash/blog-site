@@ -25,5 +25,4 @@ const post =  async (req,res,next) => {
         next(err);
     }
   }
-
   export default post;

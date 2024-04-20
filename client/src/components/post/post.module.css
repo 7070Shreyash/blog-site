@@ -27,6 +27,8 @@
 
 .author{
     color:#333;
+    text-decoration:none;
+    color: inherit;
 }
 
 .summary{

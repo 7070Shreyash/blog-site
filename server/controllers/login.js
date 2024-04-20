@@ -7,7 +7,7 @@ const login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
         const userDoc = await User.findOne({ username });
-        const passOk = bcrypt.compareSync(password, userDoc.password);
+        const passOk = await bcrypt.compare(password, userDoc.password);
         if (passOk) {
             // logged in
             const token = jwt.sign( { username, id: userDoc._id }, process.env.JWT);

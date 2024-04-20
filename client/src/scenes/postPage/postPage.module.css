@@ -50,7 +50,7 @@ time{
 }
 
 
-a.editbtn{
+.editbtn{
     background-color: #333;
     display: inline-flex;
     align-items: center;
@@ -59,6 +59,11 @@ a.editbtn{
     padding:15px 30px;
     border-radius: 5px;
     text-decoration: none;
+}
+
+.postpage a{
+    color:#333;
+    text-decoration: underline;
 }
 
 a svg{

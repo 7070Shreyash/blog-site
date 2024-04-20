@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <header>
       <Link to="/" className={styles.logo}>MyBlog</Link>
-      <nav>
+      <nav className = {styles.nav} >
         {username && (
           <>
             <Link to="/create">Create new post</Link>
