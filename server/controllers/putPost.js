@@ -1,7 +1,7 @@
-import Post from "../models/Post";
+import Post from "../models/Post.js";
 import fs from "fs"
 import jwt from "jsonwebtoken"
-import { createError } from "../utils/error";
+import { createError } from "../utils/error.js";
 
 const putPost = async (req,res,next) => {
     try {
@@ -14,23 +14,22 @@ const putPost = async (req,res,next) => {
       fs.renameSync(path, newPath);
     }
   
-    const {token} = req.cookies;
-    const info =  jwt.verify(token, process.env.JWT);
-
+      const {token} = req.cookies;
+      const info =  jwt.verify(token, process.env.JWT);
       const {id,title,summary,content} = req.body;
       const postDoc = await Post.findById(id);
       const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+
       if (!isAuthor) {
         next(createError(400,'you are not the author'))
       }
-      await postDoc.update({
-        title,
-        summary,
-        content,
-        cover: newPath ? newPath : postDoc.cover,
-      })
+      const updatedPost = await Post.findByIdAndUpdate(
+        id,
+        { title , summary , content , cover : newPath ? newPath : postDoc.cover},
+        {new : true}
+      )
 
-      res.json(postDoc);
+      res.json(updatedPost);
     } catch(err) {
         next(err);
     }

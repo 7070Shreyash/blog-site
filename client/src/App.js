@@ -1,13 +1,13 @@
 import './App.css';
 import { UserContextProvider } from './context/userContext';
 import { Routes , Route } from 'react-router-dom';
-import Layout from './scenes/layout';
 import IndexPage from "./scenes/indexPage"
 import LoginPage from './scenes/loginPage';
 import RegisterPage from './scenes/registerPage';
 import CreatePost from './scenes/createPost';
 import PostPage from './scenes/postPage';
 import EditPost from './scenes/editPost';
+import Layout from "./components/layout"
 
 function App() {
   return (

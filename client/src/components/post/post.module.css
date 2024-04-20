@@ -11,6 +11,12 @@
     }
 }
 
+/* shady */
+.texts a{
+    text-decoration:none; 
+    color: inherit;
+}
+
 .heading {
     margin:0;
     font-size: 2rem;
@@ -27,8 +33,6 @@
 
 .author{
     color:#333;
-    text-decoration:none;
-    color: inherit;
 }
 
 .summary{

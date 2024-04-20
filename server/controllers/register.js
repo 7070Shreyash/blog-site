@@ -1,16 +1,16 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from "bcrypt";
 
-const register = () => async (req,res,next) => {
-    const {username,password} = req.body;
+const register =  async (req,res,next) => {
     try{
+        const { username, password } = req.body;
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
-        const userDoc = await User.create({
-        username,
-        password:passwordHash
-      });
-      res.json(userDoc);
+        const userDoc = new User({
+          username,
+          password:passwordHash
+        })
+        const newUser = await userDoc.save();
     } catch(err) {
       next(err)
     }

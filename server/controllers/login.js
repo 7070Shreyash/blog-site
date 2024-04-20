@@ -1,7 +1,7 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createError } from "../utils/error";
+import { createError } from "../utils/error.js";
 
 const login = async (req, res, next) => {
     try {

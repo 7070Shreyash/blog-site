@@ -4,6 +4,7 @@ import styles from "./registerPage.module.css";
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
   async function register(ev) {
     ev.preventDefault();
     const response = await fetch('http://localhost:4000/register', {
@@ -12,9 +13,9 @@ export default function RegisterPage() {
       headers: {'Content-Type':'application/json'},
     });
     if (response.status === 200) {
-      alert('registration successful');
+      alert("Registration successful")
     } else {
-      alert('registration failed');
+      alert('Error occured');
     }
   }
   return (
@@ -28,7 +29,7 @@ export default function RegisterPage() {
              placeholder="password"
              value={password}
              onChange={ev => setPassword(ev.target.value)}/>
-      <button  >Register</button>
+      <button >Register</button>
     </form>
   );
 }

@@ -1,4 +1,4 @@
-import Post from "../models/Post";
+import Post from "../models/Post.js";
    
 const getSpecificPost =  async (req, res, next) => {
     try {

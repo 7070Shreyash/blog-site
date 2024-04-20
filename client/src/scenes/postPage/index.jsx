@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {formatISO9075} from "date-fns";
 import {Link} from 'react-router-dom';
 import { UserContext } from "../../context/userContext";
-import styles from "/postPage.module.css"; 
+import styles from "./postPage.module.css"; 
 
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);

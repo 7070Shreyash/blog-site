@@ -3,28 +3,33 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import register from "./controllers/register";
-import login from "./controllers/login";
-import profile from "./controllers/profile";
-import logout from "./controllers/logout";
-import post from "./controllers/post";
-import getPost from "./controllers/getPost";
-import getSpecificPost from "./controllers/getSpecificPost";
-import putPost from "./controllers/putPost";
+import register from "./controllers/register.js"
+import login from "./controllers/login.js";
+import profile from "./controllers/profile.js";
+import logout from "./controllers/logout.js";
+import post from "./controllers/post.js";
+import getPost from "./controllers/getPost.js";
+import getSpecificPost from "./controllers/getSpecificPost.js";
+import putPost from "./controllers/putPost.js";
 import multer from "multer";
+import path from "path"
+import { fileURLToPath } from "url";
 const uploadMiddleware = multer({ dest: 'uploads/' });
 
 const app = express();
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 //middlewares
-app.use(cors({credentials:true,origin:'http://localhost:3000'}))
+app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-app.post('/register', register)
+
 app.post('/login', login);
+app.post('/register', register);
 app.get('/profile', profile);
 app.post('/logout', logout);
 app.post('/post', uploadMiddleware.single('file'), post);

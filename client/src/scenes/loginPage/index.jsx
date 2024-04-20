@@ -7,23 +7,23 @@ export default function LoginPage() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [redirect,setRedirect] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { user , setUser } = useContext(UserContext);
+  
   async function login(ev) {
-    ev.preventDefault();
-    const response = await fetch('http://localhost:4000/login', {
+      ev.preventDefault();
+      try {
+      const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type':'application/json'},
       credentials: 'include',
     });
-    if (response.ok) {
-      response.json().then(user => {
-        setUser(user);
-        setRedirect(true);
-      });
-    } else {
-      alert('wrong credentials');
-    }
+      const data = await response.json()
+      setUser(data)
+      setRedirect(true)
+      } catch(err) {
+        console.log(`$ Error occured ${err}`)
+      }
   }
 
   if (redirect) {

@@ -5,16 +5,7 @@ import styles from "./header.module.css";
 
 export default function Header() {
   const { user , setUser } = useContext(UserContext);
-  useEffect(() => {
-    fetch('http://localhost:4000/profile', {
-      credentials: 'include',
-    }).then(response => {
-      response.json().then(user => {
-        setUser(user);
-      });
-    });
-  }, []);
-
+  
   function logout() {
     fetch('http://localhost:4000/logout', {
       credentials: 'include',
