@@ -22,7 +22,11 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //middlewares
-app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cors({
+  credentials:true,
+  origin:['https://blog-site-client.app'],
+  methods : ['POST','PUT','GET']
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
