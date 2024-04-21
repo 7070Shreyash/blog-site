@@ -11,6 +11,7 @@ const register =  async (req,res,next) => {
           password:passwordHash
         })
         const newUser = await userDoc.save();
+        res.status(200).json(newUser);
     } catch(err) {
       next(err)
     }
