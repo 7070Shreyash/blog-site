@@ -42,14 +42,12 @@ export default function EditPost() {
       body: data,
       credentials: 'include',
     });
-    if (response.ok) {
-      setRedirect(true);
-    }
+    setRedirect(true)
     } catch(err) {
       console.log(`Error occured ${err}`);
     }
   }
-
+  
   if (redirect) {
     return <Navigate to={'/'} />
   }
