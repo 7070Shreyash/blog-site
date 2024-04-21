@@ -10,7 +10,7 @@ export default function PostPage() {
   const {user} = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`https://blog-site-xcj0.onrender.com/post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -36,7 +36,7 @@ export default function PostPage() {
         </div>
       )}
       <div className={styles.image}>
-        <img className={styles.img} src={`http://localhost:4000/${postInfo.cover}`} alt=""/>
+        <img className={styles.img} src={`https://blog-site-xcj0.onrender.com/${postInfo.cover}`} alt=""/>
       </div>
       <div className={styles.content} dangerouslySetInnerHTML={{__html:postInfo.content}} />
     </div>

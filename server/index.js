@@ -25,7 +25,7 @@ const __dirname = path.dirname(__filename);
 //middlewares
 app.use(cors({
   credentials:true,
-  origin:['http://localhost:3000'],
+  origin:['https://main--blog-site-frontend.netlify.app/'],
   methods : ['POST','PUT','GET']
 }));
 

@@ -7,7 +7,7 @@ export default function Header() {
   const { user , setUser } = useContext(UserContext);
   
   function logout() {
-    fetch('http://localhost:4000/logout', {
+    fetch('https://blog-site-xcj0.onrender.com/logout', {
       credentials: 'include',
       method: 'POST',
     });
