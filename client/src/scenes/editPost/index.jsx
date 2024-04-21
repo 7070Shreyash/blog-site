@@ -12,7 +12,8 @@ export default function EditPost() {
   const [redirect,setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch('https://blog-site-xcj0.onrender.com/post/'+id)
+      try {
+        fetch('https://blog-site-xcj0.onrender.com/post/'+id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -20,6 +21,9 @@ export default function EditPost() {
           setSummary(postInfo.summary);
         });
       });
+      } catch(err) {
+        console.log(`Error occured ${err}`)
+      }
   }, []);
 
   async function updatePost(ev) {
@@ -32,13 +36,17 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch('https://blog-site-xcj0.onrender.com/post', {
+    try {
+      const response = await fetch('https://blog-site-xcj0.onrender.com/post', {
       method: 'PUT',
       body: data,
       credentials: 'include',
     });
     if (response.ok) {
       setRedirect(true);
+    }
+    } catch(err) {
+      console.log(`Error occured ${err}`);
     }
   }
 

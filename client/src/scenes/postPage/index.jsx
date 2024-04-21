@@ -10,12 +10,14 @@ export default function PostPage() {
   const {user} = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`https://blog-site-xcj0.onrender.com/post/${id}`)
+    try {fetch(`https://blog-site-xcj0.onrender.com/post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
         });
-      });
+      });} catch(err) {
+        console.log(`Error occured ${err}`);
+      }
   }, []);
 
   if (!postInfo) return '';

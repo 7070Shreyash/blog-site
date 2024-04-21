@@ -9,13 +9,15 @@ export default function RegisterPage() {
 
   async function register(ev) {
     ev.preventDefault();
-    const response = await fetch('https://blog-site-xcj0.onrender.com/register', {
+    try {const response = await fetch('https://blog-site-xcj0.onrender.com/register', {
       method: 'POST',
       body: JSON.stringify({username,password}),
       headers: {'Content-Type':'application/json'},
     });
     if (response.ok) {
       setRedirect(true);
+    }} catch(err) {
+      console.log(`Error occured ${err}`);
     }
   }
 
