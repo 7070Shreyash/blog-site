@@ -26,7 +26,6 @@ const __dirname = path.dirname(__filename);
 app.use(cors({
   credentials:true,
   origin:['https://main--blog-site-frontend.netlify.app/', 'http://localhost:3000'],
-  methods : ['POST','PUT','GET']
 }));
 
 app.use(express.json());
