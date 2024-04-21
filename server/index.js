@@ -21,16 +21,17 @@ dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 //middlewares
 app.use(cors({
   credentials:true,
-  origin:['https://blog-site-client.app'],
+  origin:['http://localhost:3000'],
   methods : ['POST','PUT','GET']
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
-
 
 app.post('/login', login);
 app.post('/register', register);
@@ -53,7 +54,6 @@ app.use((err, req, res, next) => {
       stack: err.stack,
     });
   });
-
 
 // Connections
 
