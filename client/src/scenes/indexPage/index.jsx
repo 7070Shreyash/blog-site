@@ -1,11 +1,11 @@
 import Post from "../../components/post";
 import {useEffect, useState} from "react";
-
+import { REACT_APP_BASE_URL } from "../../components/helper";
 export default function IndexPage() {
   const [posts,setPosts] = useState([]);
   useEffect(() => {
     try {
-    fetch(process.env.REACT_APP_BASE_URL + `post`).then(response => {
+    fetch(REACT_APP_BASE_URL + `post`).then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });

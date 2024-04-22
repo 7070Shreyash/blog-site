@@ -4,7 +4,7 @@ import {Navigate} from "react-router-dom";
 import styles from "./createPost.module.css";
 import Editor from "../../components/editor";
 import { useSelector } from 'react-redux';
-
+import { REACT_APP_BASE_URL } from '../../components/helper';
 export default function CreatePost() {
   const [title,setTitle] = useState('');
   const [summary,setSummary] = useState('');
@@ -22,7 +22,7 @@ export default function CreatePost() {
     data.set('file', files[0]);
     ev.preventDefault();
     try {
-       await fetch(process.env.REACT_APP_BASE_URL +`post`, {
+       await fetch(REACT_APP_BASE_URL +`post`, {
       method: 'POST',
       body: data,
       credentials: 'include',

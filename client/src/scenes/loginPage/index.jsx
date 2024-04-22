@@ -3,7 +3,7 @@ import {Navigate} from "react-router-dom";
 import styles from "./loginPage.module.css";
 import { useDispatch } from "react-redux";
 import { setUser , setToken } from "../../state";
-
+import { REACT_APP_BASE_URL } from "../../components/helper";
 export default function LoginPage() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
@@ -13,7 +13,7 @@ export default function LoginPage() {
   async function login(ev) {
       ev.preventDefault();
       try {
-      const response = await fetch(process.env.REACT_APP_BASE_URL + `login`, {
+      const response = await fetch(REACT_APP_BASE_URL + `login`, {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type':'application/json'},

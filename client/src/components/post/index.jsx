@@ -1,14 +1,14 @@
 import { formatISO9075 } from "date-fns";
 import { Link } from "react-router-dom";
 import styles from "./post.module.css";
-
+import { REACT_APP_BASE_URL } from "../helper";
 export default function Post({_id, title, summary, cover, content, createdAt, author }) {
 
   return (
     <div className={styles.post}>
       <div className={styles.image}>
         <Link to={`/post/${_id}`}>
-        <img src={process.env.REACT_APP_BASE_URL + `${cover}`} alt=""/>
+        <img src={REACT_APP_BASE_URL + `${cover}`} alt=""/>
         </Link>
       </div>
       <div className={styles.texts}>

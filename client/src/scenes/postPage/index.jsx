@@ -4,7 +4,7 @@ import {formatISO9075} from "date-fns";
 import {Link} from 'react-router-dom';
 import styles from "./postPage.module.css"; 
 import { useSelector } from "react-redux";
-
+import { REACT_APP_BASE_URL } from "../../components/helper";
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
   const user = useSelector((state) => state.user);
@@ -12,7 +12,7 @@ export default function PostPage() {
   useEffect(() => {
         
     
-    try {fetch(process.env.REACT_APP_BASE_URL + `post/${id}`)
+    try {fetch(REACT_APP_BASE_URL + `post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -40,7 +40,7 @@ export default function PostPage() {
         </div>
       )}
       <div className={styles.image}>
-        <img className={styles.img} src={process.env.REACT_APP_BASE_URL + `${postInfo.cover}`} alt=""/>
+        <img className={styles.img} src={REACT_APP_BASE_URL + `${postInfo.cover}`} alt=""/>
       </div>
       <div className={styles.content} dangerouslySetInnerHTML={{__html:postInfo.content}} />
     </div>

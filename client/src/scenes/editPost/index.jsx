@@ -3,7 +3,7 @@ import {Navigate, useParams} from "react-router-dom";
 import Editor from "../../components/editor";
 import styles from "./editPost.module.css";
 import { useSelector } from "react-redux";
-
+import { REACT_APP_BASE_URL } from "../../components/helper";
 export default function EditPost() {
   const { id } = useParams();
   const [ title,setTitle] = useState('');
@@ -15,7 +15,7 @@ export default function EditPost() {
 
   useEffect(() => {
       try {
-        fetch(process.env.REACT_APP_BASE_URL + `post/${id}`)
+        fetch(REACT_APP_BASE_URL + `post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -39,7 +39,7 @@ export default function EditPost() {
       data.set('file', files?.[0]);
     }
     try {
-      await fetch(process.env.REACT_APP_BASE_URL + `post`, {
+      await fetch(REACT_APP_BASE_URL + `post`, {
       method: 'PUT',
       body: data,
       credentials: 'include',

@@ -1,7 +1,7 @@
 import {useState} from "react";
 import styles from "./registerPage.module.css";
 import { Navigate } from "react-router-dom";
-
+import { REACT_APP_BASE_URL } from "../../components/helper";
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -9,7 +9,7 @@ export default function RegisterPage() {
 
   async function register(ev) {
     ev.preventDefault();
-    try {const response = await fetch(process.env.REACT_APP_BASE_URL + `register`, {
+    try {const response = await fetch(REACT_APP_BASE_URL + `register`, {
       method: 'POST',
       body: JSON.stringify({username,password}),
       headers: {'Content-Type':'application/json'},
