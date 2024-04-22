@@ -23,7 +23,7 @@ const __dirname = path.dirname(__filename);
 //middlewares
 app.use(cors({
   credentials:true,
-  origin:['https://main--blog-site-frontend.netlify.app/', 'http://localhost:3000'],
+  origin:['https://main--blog-site-frontend.netlify.app/', 'http://localhost:3000', 'https://blog-site-frontend.netlify.app/'],
 }));
 
 app.use(express.json());
