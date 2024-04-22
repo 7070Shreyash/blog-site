@@ -1,5 +1,4 @@
 import './App.css';
-import { UserContextProvider } from './context/userContext';
 import { Routes , Route } from 'react-router-dom';
 import IndexPage from "./scenes/indexPage"
 import LoginPage from './scenes/loginPage';
@@ -12,7 +11,6 @@ import Layout from "./components/layout"
 function App() {
   return (
     <div className='app' >
-    <UserContextProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<IndexPage />} />
@@ -23,7 +21,6 @@ function App() {
           <Route path="/edit/:id" element={<EditPost />} />
         </Route>
       </Routes>
-    </UserContextProvider>
     </div>
   );
 }

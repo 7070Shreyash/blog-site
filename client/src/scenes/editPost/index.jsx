@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {Navigate, useParams} from "react-router-dom";
 import Editor from "../../components/editor";
 import styles from "./editPost.module.css";
+import { useSelector } from "react-redux";
 
 export default function EditPost() {
   const { id } = useParams();
@@ -10,10 +11,11 @@ export default function EditPost() {
   const [content,setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect,setRedirect] = useState(false);
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
       try {
-        fetch('https://blog-site-xcj0.onrender.com/post/'+id)
+        fetch(process.env.REACT_APP_BASE_URL + `post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -37,10 +39,11 @@ export default function EditPost() {
       data.set('file', files?.[0]);
     }
     try {
-      const response = await fetch('https://blog-site-xcj0.onrender.com/post', {
+      await fetch(process.env.REACT_APP_BASE_URL + `post`, {
       method: 'PUT',
       body: data,
       credentials: 'include',
+      headers: { Authorization: `${token}` },
     });
     setRedirect(true)
     } catch(err) {

@@ -1,16 +1,18 @@
-import {useContext, useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {formatISO9075} from "date-fns";
 import {Link} from 'react-router-dom';
-import { UserContext } from "../../context/userContext";
 import styles from "./postPage.module.css"; 
+import { useSelector } from "react-redux";
 
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
-  const {user} = useContext(UserContext);
+  const user = useSelector((state) => state.user);
   const { id } = useParams();
   useEffect(() => {
-    try {fetch(`https://blog-site-xcj0.onrender.com/post/${id}`)
+        
+    
+    try {fetch(process.env.REACT_APP_BASE_URL + `post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -38,7 +40,7 @@ export default function PostPage() {
         </div>
       )}
       <div className={styles.image}>
-        <img className={styles.img} src={`https://blog-site-xcj0.onrender.com/${postInfo.cover}`} alt=""/>
+        <img className={styles.img} src={process.env.REACT_APP_BASE_URL + `${postInfo.cover}`} alt=""/>
       </div>
       <div className={styles.content} dangerouslySetInnerHTML={{__html:postInfo.content}} />
     </div>

@@ -3,6 +3,7 @@ import {useState} from "react";
 import {Navigate} from "react-router-dom";
 import styles from "./createPost.module.css";
 import Editor from "../../components/editor";
+import { useSelector } from 'react-redux';
 
 export default function CreatePost() {
   const [title,setTitle] = useState('');
@@ -11,6 +12,8 @@ export default function CreatePost() {
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
 
+  const token = useSelector((state) => state.token);
+  
   async function createNewPost(ev) {
     const data = new FormData();
     data.set('title', title);
@@ -19,14 +22,13 @@ export default function CreatePost() {
     data.set('file', files[0]);
     ev.preventDefault();
     try {
-      const response = await fetch('https://blog-site-xcj0.onrender.com/post', {
+       await fetch(process.env.REACT_APP_BASE_URL +`post`, {
       method: 'POST',
       body: data,
       credentials: 'include',
+      headers: { Authorization: `${token}`}
     });
-    if (response.ok) {
-      setRedirect(true);
-    }
+    setRedirect(true)
     } catch(err) {
       console.log(`Error occured ${err}`);
     }

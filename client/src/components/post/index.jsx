@@ -8,7 +8,7 @@ export default function Post({_id, title, summary, cover, content, createdAt, au
     <div className={styles.post}>
       <div className={styles.image}>
         <Link to={`/post/${_id}`}>
-          <img src={'https://blog-site-xcj0.onrender.com/' + cover } alt=""/>
+        <img src={process.env.REACT_APP_BASE_URL + `${cover}`} alt=""/>
         </Link>
       </div>
       <div className={styles.texts}>

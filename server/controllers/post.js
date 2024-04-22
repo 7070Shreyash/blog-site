@@ -10,7 +10,7 @@ const post =  async (req,res,next) => {
     const newPath = path+'.'+ext;
     fs.renameSync(path, newPath);
   
-    const { token } = req.cookies;
+    const token  = req.header("Authorization")
     const info = jwt.verify(token, process.env.JWT);
     const { title , summary , content } = req.body;
     const postDoc = await Post.create({

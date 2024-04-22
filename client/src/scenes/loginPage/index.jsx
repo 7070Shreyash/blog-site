@@ -1,29 +1,34 @@
-import {useContext, useState} from "react";
+import { useState} from "react";
 import {Navigate} from "react-router-dom";
-import { UserContext } from "../../context/userContext";
 import styles from "./loginPage.module.css";
+import { useDispatch } from "react-redux";
+import { setUser , setToken } from "../../state";
 
 export default function LoginPage() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [redirect,setRedirect] = useState(false);
-  const { user , setUser } = useContext(UserContext);
+  const dispatch = useDispatch()
   
   async function login(ev) {
       ev.preventDefault();
       try {
-      const response = await fetch('https://blog-site-xcj0.onrender.com/login', {
+      const response = await fetch(process.env.REACT_APP_BASE_URL + `login`, {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type':'application/json'},
       credentials: 'include',
     });
-      const data = await response.json()
-      setUser(data)
-      setRedirect(true)
+      if(response.ok) {
+        const data = await response.json()
+        const { user , token } = data;
+        dispatch(setUser({user}));
+        dispatch(setToken({token}));
+      }
       } catch(err) {
         console.log(`$ Error occured ${err}`)
       }
+      setRedirect(true)
   }
 
   if (redirect) {

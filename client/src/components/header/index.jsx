@@ -1,35 +1,28 @@
 import {Link} from "react-router-dom";
-import {useContext} from "react";
-import { UserContext } from "../../context/userContext";
 import styles from "./header.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken, setUser } from "../../state";
 
 export default function Header() {
-  const { user , setUser } = useContext(UserContext);
+  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch()
   
   function logout() {
-      try {
-        fetch('https://blog-site-xcj0.onrender.com/logout', {
-      credentials: 'include',
-      method: 'POST',
-    });
-      setUser(null);
-      } catch(err) {
-        console.log(`Error happened ${err}`);
-      }
+      dispatch(setUser({user : null}))
+      dispatch(setToken({token : null}))
   }
 
-  const username = user?.username;
   return (
     <header>
       <Link to="/" className={styles.logo}>MyBlog</Link>
       <nav className = {styles.nav} >
-        {username && (
+        {user && (
           <>
             <Link to="/create">Create new post</Link>
-            <a className={styles.link} onClick={logout}> Logout ({username})</a>
+            <a className={styles.link} onClick={logout}> Logout ({user.username})</a>
           </>
         )}
-        {!username && (
+        {!user && (
           <>
             <Link to="/login"> Login </Link>
             <Link to="/register"> Register </Link>

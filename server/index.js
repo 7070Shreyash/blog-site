@@ -5,8 +5,6 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import register from "./controllers/register.js"
 import login from "./controllers/login.js";
-import profile from "./controllers/profile.js";
-import logout from "./controllers/logout.js";
 import post from "./controllers/post.js";
 import getPost from "./controllers/getPost.js";
 import getSpecificPost from "./controllers/getSpecificPost.js";
@@ -34,8 +32,6 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.post('/login', login);
 app.post('/register', register);
-app.get('/profile', profile);
-app.post('/logout', logout);
 app.post('/post', uploadMiddleware.single('file'), post);
 app.get('/post', getPost);
 app.get('/post/:id', getSpecificPost)

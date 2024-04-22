@@ -11,7 +11,8 @@ const login = async (req, res, next) => {
         if (passOk) {
             // logged in
             const token = jwt.sign( { username, id: userDoc._id }, process.env.JWT);
-            res.cookie('token', token).json({id: userDoc._id,username});
+            const user = {id: userDoc._id,username}
+            res.status(200).json({user , token});
         } else {
             next(createError(400,'wrong credentials'))
         }

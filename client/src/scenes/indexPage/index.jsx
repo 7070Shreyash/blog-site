@@ -5,7 +5,7 @@ export default function IndexPage() {
   const [posts,setPosts] = useState([]);
   useEffect(() => {
     try {
-    fetch('https://blog-site-xcj0.onrender.com/post').then(response => {
+    fetch(process.env.REACT_APP_BASE_URL + `post`).then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });
