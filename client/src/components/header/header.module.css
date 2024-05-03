@@ -20,3 +20,9 @@ header a {
     display:flex;
     gap: 24px;
 }
+
+@media screen and (max-width: 430px) {
+    .nav{
+        padding : 20px;
+    }
+}
